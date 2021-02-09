@@ -1,16 +1,29 @@
-# This is a sample Python script.
-
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from Library import add_books, LIBRARY
+from Members import Members
+from UserType import UserTypes
 
 
-# Press the green button in the gutter to run the script.
+def print_all_books():
+    for book in LIBRARY:
+        print(book.title, book.name_authors, book.reference)
+
+
+def get_book_by_title(title):
+    for book in LIBRARY:
+        if book.title == title:
+            return book
+
+
+def main():
+    add_books()
+    print_all_books()
+    member = Members('1', UserTypes.Members)
+    book = get_book_by_title("Algorithmie")
+    print("before borrowing: ", book.reserved)
+    member.borrow(book)
+    book = get_book_by_title("Algorithmie")
+    print("after borrowing: ", book.reserved)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
